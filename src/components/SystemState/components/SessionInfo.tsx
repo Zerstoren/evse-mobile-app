@@ -41,7 +41,7 @@ export const SessionInfo = () => {
     <View style={styles.container}>
       <View style={styles.box}>
         <Text style={styles.text}>
-          <Trans>Session consume</Trans>
+          <Trans>Consumed</Trans>
         </Text>
         <Text style={styles.text}>
           {sessionEnergy} <Trans>kW/h</Trans>

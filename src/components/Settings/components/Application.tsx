@@ -65,8 +65,8 @@ export const Application = () => {
           <SelectDropdown
             buttonStyle={styles.select}
             buttonTextStyle={styles.selectText}
-            data={[t("English"), t("Ukraine")]}
-            defaultValue={[t("English"), t("Ukraine")][language === "en" ? 0 : 1]}
+            data={[t("English"), t("Ukrainian")]}
+            defaultValue={[t("English"), t("Ukrainian")][language === "en" ? 0 : 1]}
             onSelect={(selectedItem, index) => dispatch(setLanguageAction(index === 0 ? "en" : "ua"))}
             buttonTextAfterSelection={(selectedItem) => selectedItem}
             rowTextForSelection={(item) => item}
