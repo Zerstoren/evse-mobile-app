@@ -8,7 +8,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "translations": "npx i18next-parser --config src/i18n/i18next-parser.config.js",
-    "preview": "eas build -p android --profile preview"
+    "preview": "eas build -p android --profile preview",
+    "test": "jest"
   },
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",
@@ -41,6 +42,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
+    "@types/jest": "^29.0.3",
     "@types/react": "~18.0.14",
     "@types/react-native": "~0.69.1",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
@@ -56,6 +58,8 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.4",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "jest": "^26.6.3",
+    "jest-expo": "^46.0.1",
     "prettier": "^2.7.1",
     "typescript": "~4.3.5"
   }
