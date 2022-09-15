@@ -7,6 +7,7 @@ export enum StorageKeys {
   CAR_CAPACITY = "CAR_CAPACITY",
   CAR_CONSUMPTION = "CAR_CONSUMPTION",
   LANGUAGE = "LANGUAGE",
+  CURRENT_SESSION = "CURRENT_SESSION",
 }
 
 type StorageReturnData = {
@@ -16,6 +17,9 @@ type StorageReturnData = {
   [StorageKeys.CAR_CAPACITY]: number;
   [StorageKeys.CAR_CONSUMPTION]: number;
   [StorageKeys.LANGUAGE]: string;
+  [StorageKeys.CURRENT_SESSION]: {
+    start: number;
+  } | null;
 };
 
 export const setItem = async <T extends StorageKeys>(name: T, value: StorageReturnData[T]) => {

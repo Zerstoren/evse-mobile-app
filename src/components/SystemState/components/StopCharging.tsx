@@ -22,7 +22,7 @@ export const StopCharging = () => {
   const status = useSelector(getStatusStateSelector);
   const evsaDisabled = useSelector(getEvseLimitSelector);
 
-  if (STATUS.StateC !== status) {
+  if (STATUS.StateCharge !== status) {
     return null;
   }
 

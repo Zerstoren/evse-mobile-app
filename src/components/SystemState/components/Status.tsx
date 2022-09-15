@@ -62,9 +62,9 @@ export const Status = () => {
   const pilotText = usePilotTranslate(pilot);
 
   // eslint-disable-next-line no-nested-ternary
-  const stateColor = [STATUS.StateA, STATUS.StateC].includes(state)
+  const stateColor = [STATUS.StateReady, STATUS.StateCharge].includes(state)
     ? styles.success
-    : STATUS.StateB === state
+    : STATUS.StateWaiting === state
     ? styles.warning
     : styles.error;
 

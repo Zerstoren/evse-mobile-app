@@ -1,8 +1,8 @@
 export enum STATUS {
   StateUnknown,
-  StateA,
-  StateB,
-  StateC,
+  StateReady,
+  StateWaiting,
+  StateCharge,
   StateD,
   StateE,
   StateF,

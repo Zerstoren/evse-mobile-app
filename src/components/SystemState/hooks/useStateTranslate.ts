@@ -8,13 +8,13 @@ export const useStateTranslate = (state: STATUS) => {
     case STATUS.StateUnknown:
       return t("No data");
 
-    case STATUS.StateA:
+    case STATUS.StateReady:
       return t("Ready");
 
-    case STATUS.StateB:
+    case STATUS.StateWaiting:
       return t("Waiting");
 
-    case STATUS.StateC:
+    case STATUS.StateCharge:
       // Expecting, this some problem.
       // if (tmp_ctrl_val) {
       //   // EVSE.tmp_ctrl_val != 0
