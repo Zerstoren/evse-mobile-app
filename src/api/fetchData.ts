@@ -12,6 +12,85 @@ import { setTariffAction } from "../store/tariff/action";
 
 let url: string | null = null;
 
+export const setMainData = (data: any) => {
+  store.dispatch(
+    setStatusData({
+      state: data.state,
+      pilot: data.pilot,
+      voltMeas1: parseFloat(data.voltMeas1.toFixed(1)),
+      curMeas1: parseFloat(data.curMeas1.toFixed(1)),
+      powerMeas: parseFloat(data.powerMeas.toFixed(1)),
+      boxTemp: data.temperature1,
+      socketTemp: data.temperature2,
+      sessionEnergy: parseFloat(data.sessionEnergy.toFixed(1)),
+      sessionTime: data.sessionTime,
+      sessionMoney: parseFloat(data.sessionMoney.toFixed(1)),
+      totalEnergy: parseFloat(data.totalEnergy.toFixed(1)),
+      IEM1: parseFloat(data.IEM1.toFixed(1)),
+      IEM2: parseFloat(data.IEM2.toFixed(1)),
+      IEM1_money: parseFloat(data.IEM1_money.toFixed(1)),
+      IEM2_money: parseFloat(data.IEM2_money.toFixed(1)),
+    }),
+  );
+
+  store.dispatch(
+    setEvseConfigAction({
+      limitsStatus: data.limitsStatus,
+      restricted_mode: data.restricted_mode,
+      groundCtrl: data.groundCtrl,
+      led_ctrl: data.led_ctrl,
+      add_curr: data.add_curr,
+      tmp_ctrl: data.tmp_ctrl,
+      timerType: data.timerType,
+      one_charge: data.one_charge,
+    }),
+  );
+
+  store.dispatch(
+    setAdjustment({
+      currentSet: data.currentSet,
+      aiVoltage: data.aiVoltage,
+      aiStatus: data.aiStatus,
+      aiCurrent: data.aiModecurrent,
+    }),
+  );
+
+  store.dispatch(
+    getLimitsAction({
+      timeLimit: data.timeLimit,
+      energyLimit: data.energyLimit,
+      moneyLimit: data.moneyLimit,
+    }),
+  );
+
+  store.dispatch(
+    getSchedule({
+      currentSchedule1: data.currentSchedule1,
+      currentSchedule2: data.currentSchedule2,
+      energySchedule1: data.energySchedule1,
+      energySchedule2: data.energySchedule2,
+      stopSchedule1: data.stopSchedule1,
+      stopSchedule2: data.stopSchedule2,
+      startSchedule1: data.startSchedule1,
+      startSchedule2: data.startSchedule2,
+    }),
+  );
+
+  store.dispatch(
+    setTariffAction({
+      tarif: data.tarif,
+      tarif_2: data.tarif_2,
+      tarif_3: data.tarif_3,
+      tarif_2_start: data.tarif_2_start,
+      tarif_2_stop: data.tarif_2_stop,
+      tarif_3_start: data.tarif_3_start,
+      tarif_3_stop: data.tarif_3_stop,
+      tarif_2_status: data.tarif_2_status,
+      tarif_3_status: data.tarif_3_status,
+    }),
+  );
+};
+
 export const fetchData = async (isInit = false) => {
   if (!url) {
     url = await getItem(StorageKeys.NETWORK_IP);
@@ -19,114 +98,47 @@ export const fetchData = async (isInit = false) => {
 
   await awaitPostStatus();
 
-  return new Promise<void>((resolve) => {
+  return new Promise<void>((resolve, reject) => {
     const requestMain = new XMLHttpRequest();
     requestMain.open("POST", `http://${url}/${isInit ? "init" : "main"}`, true);
     requestMain.send();
 
-    requestMain.onreadystatechange = () => {
-      if (requestMain.readyState === 4 && requestMain.status === 200) {
-        const data = JSON.parse(requestMain.responseText);
+    requestMain.addEventListener("error", () => reject);
+    requestMain.addEventListener("timeout", () => reject);
+    requestMain.addEventListener("abort", () => reject);
 
-        if (isInit) {
-          store.dispatch(
-            setEvseInitConfigAction({
-              ESP_SW_version: data.ESP_SW_version,
-              pageType: data.pageType,
-              minVoltage: data.minVoltage,
-              security_ctrl: data.secur_ctrl,
-              maxPower: data.curDesign,
-            }),
-          );
-          resolve();
-          return;
-        }
+    requestMain.addEventListener("loadend", () => {
+      let data: any;
 
-        if (postStatus) {
-          resolve();
-          return;
-        }
-
-        store.dispatch(
-          setStatusData({
-            state: data.state,
-            pilot: data.pilot,
-            voltMeas1: parseFloat(data.voltMeas1.toFixed(1)),
-            curMeas1: parseFloat(data.curMeas1.toFixed(1)),
-            powerMeas: parseFloat(data.powerMeas.toFixed(1)),
-            boxTemp: data.temperature1,
-            socketTemp: data.temperature2,
-            sessionEnergy: parseFloat(data.sessionEnergy.toFixed(1)),
-            sessionTime: data.sessionTime,
-            sessionMoney: parseFloat(data.sessionMoney.toFixed(1)),
-            totalEnergy: parseFloat(data.totalEnergy.toFixed(1)),
-            IEM1: parseFloat(data.IEM1.toFixed(1)),
-            IEM2: parseFloat(data.IEM2.toFixed(1)),
-            IEM1_money: parseFloat(data.IEM1_money.toFixed(1)),
-            IEM2_money: parseFloat(data.IEM2_money.toFixed(1)),
-          }),
-        );
-
-        store.dispatch(
-          setEvseConfigAction({
-            limitsStatus: data.limitsStatus,
-            restricted_mode: data.restricted_mode,
-            groundCtrl: data.groundCtrl,
-            led_ctrl: data.led_ctrl,
-            add_curr: data.add_curr,
-            tmp_ctrl: data.tmp_ctrl,
-            timerType: data.timerType,
-            one_charge: data.one_charge,
-          }),
-        );
-
-        store.dispatch(
-          setAdjustment({
-            currentSet: data.currentSet,
-            aiVoltage: data.aiVoltage,
-            aiStatus: data.aiStatus,
-            aiCurrent: data.aiModecurrent,
-          }),
-        );
-
-        store.dispatch(
-          getLimitsAction({
-            timeLimit: data.timeLimit,
-            energyLimit: data.energyLimit,
-            moneyLimit: data.moneyLimit,
-          }),
-        );
-
-        store.dispatch(
-          getSchedule({
-            currentSchedule1: data.currentSchedule1,
-            currentSchedule2: data.currentSchedule2,
-            energySchedule1: data.energySchedule1,
-            energySchedule2: data.energySchedule2,
-            stopSchedule1: data.stopSchedule1,
-            stopSchedule2: data.stopSchedule2,
-            startSchedule1: data.startSchedule1,
-            startSchedule2: data.startSchedule2,
-          }),
-        );
-
-        store.dispatch(
-          setTariffAction({
-            tarif: data.tarif,
-            tarif_2: data.tarif_2,
-            tarif_3: data.tarif_3,
-            tarif_2_start: data.tarif_2_start,
-            tarif_2_stop: data.tarif_2_stop,
-            tarif_3_start: data.tarif_3_start,
-            tarif_3_stop: data.tarif_3_stop,
-            tarif_2_status: data.tarif_2_status,
-            tarif_3_status: data.tarif_3_status,
-          }),
-        );
-
-        resolve();
+      try {
+        data = JSON.parse(requestMain.responseText);
+      } catch (err) {
+        reject(err);
+        return;
       }
-    };
+
+      if (isInit) {
+        store.dispatch(
+          setEvseInitConfigAction({
+            ESP_SW_version: data.ESP_SW_version,
+            pageType: data.pageType,
+            minVoltage: data.minVoltage,
+            security_ctrl: data.secur_ctrl,
+            maxPower: data.curDesign,
+          }),
+        );
+        resolve();
+        return;
+      }
+
+      if (postStatus) {
+        resolve();
+        return;
+      }
+
+      setMainData(data);
+      resolve();
+    });
   });
 };
 
@@ -153,6 +165,8 @@ export const useFetchData = () => {
         }
 
         await fetchData();
+        // eslint-disable-next-line no-empty
+      } catch (e) {
       } finally {
         if (!cancel) {
           setTimeout(nextFetch, 1000);
