@@ -91,6 +91,12 @@
         "default-param-last": [0],
         "@typescript-eslint/default-param-last": [0]
       }
+    },
+    {
+      "files": ["src/tests/**/*"],
+      "rules": {
+        "max-classes-per-file": [0]
+      }
     }
   ]
 }
