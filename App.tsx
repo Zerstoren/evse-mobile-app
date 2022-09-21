@@ -37,7 +37,7 @@ export default function App() {
           <Tab.Screen name={translate[TabNames.Limits]} component={Limits} />
           <Tab.Screen name={translate[TabNames.Schedule]} component={Schedule} />
           <Tab.Screen name={translate[TabNames.Adjustment]} component={Adjustment} />
-          <Tab.Screen name={translate[TabNames.Statistic]} component={Statistic} />
+          {/* <Tab.Screen name={translate[TabNames.Statistic]} component={Statistic} /> */}
           <Tab.Screen name={translate[TabNames.Settings]} component={Settings} />
         </Navigation>
       </NavigationContainer>

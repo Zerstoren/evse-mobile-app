@@ -2,6 +2,15 @@ export enum ApplicationActionType {
   SET_MAX_CAPACITY = "SET_MAX_CAPACITY",
   SET_MAX_CURRENT = "SET_MAX_CURRENT",
   SET_LANGUAGE = "SET_LANGUAGE",
+
+  SET_TARIFF_TYPE = "SET_TARIFF_TYPE",
+}
+
+export enum TariffType {
+  // Tariff pointer used in version 1.42 and below
+  POINTER = "pointer",
+  // Tariff number used in version 1.44 and above
+  NUMBER = "number",
 }
 
 export const setMaxCapacityAction = (maxCapacity: number) => ({
@@ -17,4 +26,9 @@ export const setMaxCurrentAction = (maxCurrent: number) => ({
 export const setLanguageAction = (language: string) => ({
   type: ApplicationActionType.SET_LANGUAGE as const,
   language,
+});
+
+export const setTariffTypeAction = (tariffType: TariffType) => ({
+  type: ApplicationActionType.SET_TARIFF_TYPE as const,
+  tariffType,
 });

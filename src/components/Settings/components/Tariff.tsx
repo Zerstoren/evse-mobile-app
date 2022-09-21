@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import { Trans } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { TariffRecord } from "./TariffRecord";
 import { getCurrencySymbolSelector, tariffSelector } from "../../../store/tariff/select";
-import { setCurrencyAction } from "../../../store/tariff/action";
+import { setCurrencyAction, setTariff1Action } from "../../../store/tariff/action";
+import { getTariffTypeSelector } from "../../../store/application/select";
+import { TariffType } from "../../../store/application/action";
 
 const styles = StyleSheet.create({
   box: {
@@ -31,8 +33,13 @@ const styles = StyleSheet.create({
 
 export const Tariff = () => {
   const dispatch = useDispatch();
-  const tariffData = useSelector(tariffSelector);
+  const tariffDataSelector = useSelector(tariffSelector);
   const currency = useSelector(getCurrencySymbolSelector);
+  const tariffType = useSelector(getTariffTypeSelector);
+
+  const [tariffState, setTariffState] = useState(
+    tariffType === TariffType.POINTER ? tariffDataSelector.toFixed(2) : (tariffDataSelector / 100).toString(),
+  );
 
   return (
     <View>
@@ -47,7 +54,18 @@ export const Tariff = () => {
         <Text>
           <Trans>Tariff</Trans>
         </Text>
-        <TextInput style={styles.input} keyboardType="numeric" value={tariffData.toFixed(2)} />
+        <TextInput
+          testID="tariff-1"
+          style={styles.input}
+          keyboardType="numeric"
+          value={tariffState}
+          onChangeText={(text) => {
+            dispatch(
+              setTariff1Action(tariffType === TariffType.POINTER ? parseFloat(text) + 0.00001 : parseFloat(text) * 100),
+            );
+            setTariffState(text);
+          }}
+        />
       </View>
 
       <TariffRecord type={2} />

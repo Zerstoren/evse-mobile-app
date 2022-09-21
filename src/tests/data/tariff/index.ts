@@ -4,7 +4,7 @@ export interface TariffAbstractConstructor {
   new (): TariffAbstract;
 }
 
-abstract class TariffAbstract {
+export abstract class TariffAbstract {
   data: TariffReducerData;
 
   public constructor() {

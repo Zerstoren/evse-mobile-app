@@ -3,6 +3,7 @@ import type { TariffReducerData } from "./reducer";
 export enum TariffActionTypes {
   SET_CURRENCY = "SET_CURRENCY",
   SET_TARIFF = "SET_TARIFF",
+  SET_TARIFF_1 = "SET_TARIFF_1",
   SET_TARIFF_2 = "SET_TARIFF_2",
   SET_TARIFF_STATUS_2 = "SET_TARIFF_STATUS_2",
   SET_TARIFF_START_2 = "SET_TARIFF_START_2",
@@ -20,6 +21,11 @@ export const setCurrencyAction = (payload: string) => ({
 
 export const setTariffAction = (payload: Omit<TariffReducerData, "currency">) => ({
   type: TariffActionTypes.SET_TARIFF as const,
+  payload,
+});
+
+export const setTariff1Action = (payload: number) => ({
+  type: TariffActionTypes.SET_TARIFF_1 as const,
   payload,
 });
 
