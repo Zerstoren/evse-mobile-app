@@ -8,7 +8,6 @@ import { getItem, setItem, StorageKeys } from "../../api/storage";
 import { insertStatisticInformation } from "../../api/storage/statistic";
 
 export const waitForSessionComplete = async () => {
-  console.log("Run waitForSessionComplete");
   await fetchData();
 
   const { state, sessionTime, sessionMoney, sessionEnergy } = getStatusSelector(store.getState());

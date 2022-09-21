@@ -9,6 +9,7 @@ import { getSchedule } from "../store/schedule/action";
 import { getItem, StorageKeys } from "./storage";
 import { awaitPostStatus, postStatus } from "./postData";
 import { setTariffAction } from "../store/tariff/action";
+import { setTariffTypeAction, TariffType } from "../store/application/action";
 
 let url: string | null = null;
 
@@ -91,6 +92,24 @@ export const setMainData = (data: any) => {
   );
 };
 
+export const setInitData = (data: any) => {
+  store.dispatch(
+    setEvseInitConfigAction({
+      ESP_SW_version: data.ESP_SW_version,
+      pageType: data.pageType,
+      minVoltage: data.minVoltage,
+      security_ctrl: data.secur_ctrl,
+      maxPower: data.curDesign,
+    }),
+  );
+
+  if (data.ESP_SW_version >= 144) {
+    store.dispatch(setTariffTypeAction(TariffType.NUMBER));
+  } else {
+    store.dispatch(setTariffTypeAction(TariffType.POINTER));
+  }
+};
+
 export const fetchData = async (isInit = false) => {
   if (!url) {
     url = await getItem(StorageKeys.NETWORK_IP);
@@ -118,15 +137,7 @@ export const fetchData = async (isInit = false) => {
       }
 
       if (isInit) {
-        store.dispatch(
-          setEvseInitConfigAction({
-            ESP_SW_version: data.ESP_SW_version,
-            pageType: data.pageType,
-            minVoltage: data.minVoltage,
-            security_ctrl: data.secur_ctrl,
-            maxPower: data.curDesign,
-          }),
-        );
+        setInitData(data);
         resolve();
         return;
       }

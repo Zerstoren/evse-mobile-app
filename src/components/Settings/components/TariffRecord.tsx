@@ -7,6 +7,8 @@ import { AppButton } from "../../system/AppButton";
 import { getTimeInMinutes, transformFromMinutesToDateTime, transformMinutesToTime } from "../../system/helpers/time";
 import { TimePicker } from "../../system/TimePicker";
 import { useTariff } from "../hooks/useTariff";
+import { getTariffTypeSelector } from "../../../store/application/select";
+import { TariffType } from "../../../store/application/action";
 
 const styles = StyleSheet.create({
   block: {
@@ -84,8 +86,11 @@ export const TariffRecord: FC<TariffRecordProps> = ({ type }) => {
   const tariffStartData = useSelector(tariffStartSelector);
   const tariffStopData = useSelector(tariffStopSelector);
   const tariffStatusData = useSelector(tariffStatusSelector);
+  const tariffType = useSelector(getTariffTypeSelector);
 
-  const [tariffState, setTariffState] = useState(tariffData.toFixed(2));
+  const [tariffState, setTariffState] = useState(
+    tariffType === TariffType.POINTER ? tariffData.toFixed(2) : (tariffData / 100).toString(),
+  );
   const [tariffStartState, setTariffStartState] = useState(tariffStartData);
   const [tariffStopState, setTariffStopState] = useState(tariffStopData);
   const [tariffStatusState, setTariffStatusState] = useState(tariffStatusData);
@@ -147,11 +152,14 @@ export const TariffRecord: FC<TariffRecordProps> = ({ type }) => {
           )}
         </View>
         <TextInput
+          testID={`tariff-${type}`}
           style={styles.input}
           keyboardType="numeric"
           value={tariffState}
           onChangeText={(text) => {
-            dispatch(setTariffAction(parseFloat(text) + 0.00001));
+            dispatch(
+              setTariffAction(tariffType === TariffType.POINTER ? parseFloat(text) + 0.00001 : parseFloat(text) * 100),
+            );
             setTariffState(text);
           }}
         />

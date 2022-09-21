@@ -11,6 +11,9 @@ const resources = {
   ua: {
     messages: ua,
   },
+  test: {
+    messages: {},
+  },
 };
 
 i18n
@@ -18,7 +21,7 @@ i18n
   .init({
     resources,
     lng: "en",
-    fallbackLng: "en",
+    fallbackLng: process.env.NODE_ENV === "test" ? false : "en",
     compatibilityJSON: "v3",
     returnEmptyString: false,
     ns: ["messages"],

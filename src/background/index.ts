@@ -19,6 +19,6 @@ async function initBackgroundFetch(taskName: string, taskFn: TaskManagerTaskExec
   }
 }
 
-initBackgroundFetch("waitForSessionComplete", waitForSessionComplete, 1);
-
-waitForSessionComplete();
+// initBackgroundFetch("waitForSessionComplete", waitForSessionComplete, 1);
+//
+// waitForSessionComplete();

@@ -1,6 +1,6 @@
 {
   "name": "evse",
-  "version": "0.42.0",
+  "version": "0.44.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
@@ -9,7 +9,8 @@
     "web": "expo start --web",
     "translations": "npx i18next-parser --config src/i18n/i18next-parser.config.js",
     "preview": "eas build -p android --profile preview",
-    "test": "jest"
+    "test": "jest",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",
@@ -45,6 +46,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
+    "@testing-library/react-native": "^11.1.0",
     "@types/jest": "^29.0.3",
     "@types/react": "~18.0.14",
     "@types/react-native": "~0.69.1",

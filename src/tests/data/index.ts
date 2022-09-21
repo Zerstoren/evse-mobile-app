@@ -5,6 +5,8 @@ import { LimitAbstractConstructor, BaseLimit } from "./limits";
 import { EvseConfigAbstractConstructor, BaseEvseConfig } from "./evseConfig";
 import { ApplicationAbstractConstructor, BaseApplication } from "./application";
 import { AdjustmentAbstractConstructor, BaseAdjustment } from "./adjustment";
+import { InitAbstractConstructor } from "./init";
+import { InitBase } from "./init/initBase";
 
 export const dataCreator = (
   args: Array<
@@ -29,4 +31,8 @@ export const dataCreator = (
     BaseTariff,
     ...args,
   ].reduce((prev, Item) => Object.assign(prev, new Item().setData()), {});
+};
+
+export const dataInitCreate = (args: InitAbstractConstructor[]) => {
+  return [InitBase, ...args].reduce((prev, Item) => Object.assign(prev, new Item().setData()), {});
 };

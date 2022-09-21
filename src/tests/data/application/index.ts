@@ -1,4 +1,5 @@
 import { ApplicationReducer } from "../../../store/application/reducer";
+import { TariffType } from "../../../store/application/action";
 
 export interface ApplicationAbstractConstructor {
   new (): ApplicationAbstract;
@@ -12,6 +13,7 @@ abstract class ApplicationAbstract {
       maxCapacity: 100,
       maxCurrent: 16,
       language: "en",
+      tariffType: TariffType.NUMBER,
     };
   }
 

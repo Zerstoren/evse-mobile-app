@@ -1,5 +1,6 @@
 import {
   setCurrencyAction,
+  setTariff1Action,
   setTariff2Action,
   setTariff3Action,
   setTariffAction,
@@ -45,6 +46,7 @@ export function tariff(
   action:
     | ReturnType<typeof setCurrencyAction>
     | ReturnType<typeof setTariffAction>
+    | ReturnType<typeof setTariff1Action>
     | ReturnType<typeof setTariff2Action>
     | ReturnType<typeof setTariffStart2Action>
     | ReturnType<typeof setTariffStop2Action>
@@ -61,6 +63,13 @@ export function tariff(
     case TariffActionTypes.SET_CURRENCY:
       setItem(StorageKeys.USER_CURRENCY, action.payload);
       return { ...state, currency: action.payload };
+
+    case TariffActionTypes.SET_TARIFF_1:
+      postData(["tarif", action.payload]);
+      return {
+        ...state,
+        tarif: action.payload,
+      };
 
     case TariffActionTypes.SET_TARIFF_2:
       postData(["tarif_2", action.payload]);
