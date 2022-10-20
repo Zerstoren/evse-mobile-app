@@ -7,9 +7,20 @@ import Slider from "@react-native-community/slider";
 import SelectDropdown from "react-native-select-dropdown";
 import { Ionicons } from "@expo/vector-icons";
 import { colors } from "../../system/styles/colors";
-import { setLanguageAction, setMaxCapacityAction, setMaxCurrentAction } from "../../../store/application/action";
-import { getLanguageSelector, getMaxCapacitySelector, getMaxCurrentSelector } from "../../../store/application/select";
+import {
+  setLanguageAction,
+  setMaxCapacityAction,
+  setMaxCurrentAction,
+  setNotificationChargeAction,
+} from "../../../store/application/action";
+import {
+  getLanguageSelector,
+  getMaxCapacitySelector,
+  getMaxCurrentSelector,
+  getNotificationChargeSelector,
+} from "../../../store/application/select";
 import { getEvseConfig } from "../../../store/evseConfig/select";
+import { AppButton } from "../../system/AppButton";
 
 const styles = StyleSheet.create({
   container: {
@@ -42,6 +53,10 @@ const styles = StyleSheet.create({
     marginTop: 2,
     marginLeft: 4,
   },
+
+  button: {
+    width: 80,
+  },
 });
 
 export const Application = () => {
@@ -51,12 +66,27 @@ export const Application = () => {
   const maxCurrentData = useSelector(getMaxCurrentSelector);
   const language = useSelector(getLanguageSelector);
   const { maxPower } = useSelector(getEvseConfig);
+  const notificationCharge = useSelector(getNotificationChargeSelector);
 
   const [maxCapacity, setMaxCapacity] = useState(maxCapacityData);
   const [maxCurrent, setMaxCurrent] = useState(maxCurrentData);
 
   return (
     <View>
+      <View style={[styles.box, styles.container]}>
+        <Text>
+          <Trans>Charge Notification</Trans>
+        </Text>
+        <View>
+          <AppButton
+            style={styles.button}
+            small
+            title={notificationCharge ? t("Yes") : t("No")}
+            onPress={() => dispatch(setNotificationChargeAction(!notificationCharge))}
+          />
+        </View>
+      </View>
+
       <View style={[styles.box, styles.container]}>
         <Text>
           <Trans>Language</Trans>

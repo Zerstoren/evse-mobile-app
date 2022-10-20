@@ -4,6 +4,8 @@ export enum ApplicationActionType {
   SET_LANGUAGE = "SET_LANGUAGE",
 
   SET_TARIFF_TYPE = "SET_TARIFF_TYPE",
+
+  SET_NOTIFICATION_CHARGE = "SET_NOTIFICATION_CHARGE",
 }
 
 export enum TariffType {
@@ -31,4 +33,9 @@ export const setLanguageAction = (language: string) => ({
 export const setTariffTypeAction = (tariffType: TariffType) => ({
   type: ApplicationActionType.SET_TARIFF_TYPE as const,
   tariffType,
+});
+
+export const setNotificationChargeAction = (notification: boolean) => ({
+  type: ApplicationActionType.SET_NOTIFICATION_CHARGE as const,
+  notification,
 });

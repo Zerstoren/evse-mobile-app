@@ -2,6 +2,8 @@ import { registerTaskAsync, BackgroundFetchOptions } from "expo-background-fetch
 import { defineTask, isTaskDefined, TaskManagerTaskExecutor } from "expo-task-manager";
 
 import { waitForSessionComplete } from "./statistic";
+import { fullyCharge } from "./notifications";
+import { setItem, StorageKeys } from "../api/storage";
 
 async function initBackgroundFetch(taskName: string, taskFn: TaskManagerTaskExecutor, interval = 60 * 15) {
   try {
@@ -19,6 +21,6 @@ async function initBackgroundFetch(taskName: string, taskFn: TaskManagerTaskExec
   }
 }
 
-// initBackgroundFetch("waitForSessionComplete", waitForSessionComplete, 1);
-//
-// waitForSessionComplete();
+setItem(StorageKeys.FULLY_CHARGED_NOTIFICATION, false);
+
+initBackgroundFetch("fullyCharge", fullyCharge, 1);

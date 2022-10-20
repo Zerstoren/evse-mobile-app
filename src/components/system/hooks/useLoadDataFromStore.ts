@@ -5,7 +5,12 @@ import { useOnAutoSearch } from "../helpers/autoSearchBox";
 import { getItem, StorageKeys } from "../../../api/storage";
 import { setCurrencyAction } from "../../../store/tariff/action";
 import type { TabNames } from "../Navigation";
-import { setLanguageAction, setMaxCapacityAction, setMaxCurrentAction } from "../../../store/application/action";
+import {
+  setLanguageAction,
+  setMaxCapacityAction,
+  setMaxCurrentAction,
+  setNotificationChargeAction,
+} from "../../../store/application/action";
 
 export const useLoadDataFromStore = (targetTab: TabNames) => {
   const dispatch = useDispatch();
@@ -40,8 +45,11 @@ export const useLoadDataFromStore = (targetTab: TabNames) => {
     getItem(StorageKeys.LANGUAGE).then((language) => {
       if (language) {
         dispatch(setLanguageAction(language));
-        // i18next.changeLanguage(language);
       }
+    });
+
+    getItem(StorageKeys.SHOW_NOTIFICATION_CHARGE).then((notificationCharge) => {
+      dispatch(setNotificationChargeAction(notificationCharge === null ? true : notificationCharge));
     });
   }, []);
 };

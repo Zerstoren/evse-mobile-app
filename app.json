@@ -31,10 +31,16 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
+      "useNextNotificationsApi": true,
       "package": "ua.com.zerstoren"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e0d79a1b-0ff3-493e-8d65-66c96d956656"
+      }
     }
   }
 }

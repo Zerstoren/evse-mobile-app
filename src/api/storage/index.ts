@@ -7,7 +7,9 @@ export enum StorageKeys {
   CAR_CAPACITY = "CAR_CAPACITY",
   CAR_CONSUMPTION = "CAR_CONSUMPTION",
   LANGUAGE = "LANGUAGE",
+  SHOW_NOTIFICATION_CHARGE = "SHOW_NOTIFICATION_CHARGE",
   CURRENT_SESSION = "CURRENT_SESSION",
+  FULLY_CHARGED_NOTIFICATION = "FULLY_CHARGED_NOTIFICATION",
 }
 
 type StorageReturnData = {
@@ -20,6 +22,8 @@ type StorageReturnData = {
   [StorageKeys.CURRENT_SESSION]: {
     start: number;
   } | null;
+  [StorageKeys.FULLY_CHARGED_NOTIFICATION]: boolean;
+  [StorageKeys.SHOW_NOTIFICATION_CHARGE]: boolean;
 };
 
 export const setItem = async <T extends StorageKeys>(name: T, value: StorageReturnData[T]) => {

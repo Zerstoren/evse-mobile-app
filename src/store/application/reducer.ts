@@ -1,11 +1,12 @@
 import i18next from "i18next";
 import {
   ApplicationActionType,
-  TariffType,
   setLanguageAction,
   setMaxCapacityAction,
   setMaxCurrentAction,
+  setNotificationChargeAction,
   setTariffTypeAction,
+  TariffType,
 } from "./action";
 import { setItem, StorageKeys } from "../../api/storage";
 
@@ -14,6 +15,7 @@ export type ApplicationReducer = {
   maxCurrent: number;
   language: string;
   tariffType: TariffType;
+  notificationCharge: boolean;
 };
 
 const initialState: ApplicationReducer = {
@@ -21,6 +23,7 @@ const initialState: ApplicationReducer = {
   maxCurrent: 16,
   language: "en",
   tariffType: TariffType.NUMBER,
+  notificationCharge: true,
 };
 
 export function application(
@@ -29,7 +32,8 @@ export function application(
     | ReturnType<typeof setMaxCapacityAction>
     | ReturnType<typeof setMaxCurrentAction>
     | ReturnType<typeof setLanguageAction>
-    | ReturnType<typeof setTariffTypeAction>,
+    | ReturnType<typeof setTariffTypeAction>
+    | ReturnType<typeof setNotificationChargeAction>,
 ): ApplicationReducer {
   switch (action.type) {
     case ApplicationActionType.SET_MAX_CAPACITY:
@@ -60,6 +64,13 @@ export function application(
       return {
         ...state,
         tariffType: action.tariffType,
+      };
+
+    case ApplicationActionType.SET_NOTIFICATION_CHARGE:
+      setItem(StorageKeys.SHOW_NOTIFICATION_CHARGE, action.notification);
+      return {
+        ...state,
+        notificationCharge: action.notification,
       };
 
     default:
