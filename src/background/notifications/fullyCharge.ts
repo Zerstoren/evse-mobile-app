@@ -58,11 +58,17 @@ const updateNotification = async () => {
 };
 
 export const fullyCharge = async () => {
-  const fcn = await getItem(StorageKeys.FULLY_CHARGED_NOTIFICATION);
-
-  if (fcn === true) {
+  if ((await getItem(StorageKeys.SHOW_NOTIFICATION_CHARGE)) === false) {
+    console.log(123);
     return BackgroundFetchResult.NoData;
   }
+
+  if ((await getItem(StorageKeys.FULLY_CHARGED_NOTIFICATION)) === true) {
+    console.log(234);
+    return BackgroundFetchResult.NoData;
+  }
+
+  console.log("Start");
 
   await fetchData();
 

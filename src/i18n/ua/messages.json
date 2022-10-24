@@ -9,6 +9,8 @@
   "Can't find device ip address. Type it manually": "Не вдалося знайти IP-адресу пристрою. Введіть її вручну",
   "Cancel": "Відмінити",
   "Charge": "Заряджання",
+  "Charge Notification": "Повідомлення про заряджання",
+  "Charged {{energy}} kWh in ": "Заряджено {{energy}} кВт за ",
   "Connected to car": "Приєднанно до авто",
   "Consumed": "Спожито",
   "Continue charging": "Продовжити заряджання",
@@ -115,9 +117,12 @@
   "Voltage": "Напруга",
   "Waiting": "Очікування",
   "Yes": "Так",
+  "and cost {{cost}} {{currencySymbol}}": "та коштувало {{cost}}",
   "kW": "кВт",
   "kW/h": "кВт/г",
   "noPWN": "",
   "noSleep": "",
-  "{{hours}}h, {{minutes}}m, {{seconds}}s": "{{hours}}г, {{minutes}}хв, {{seconds}}с"
+  "{{hours}}h, {{minutes}}m, {{seconds}}s": "{{hours}}г, {{minutes}}хв, {{seconds}}с",
+  "{{timeHours}} hour and ": "{{timeHours}} годин та ",
+  "{{timeMinutes}} minute ": "{{timeMinutes}} хвилин "
 }

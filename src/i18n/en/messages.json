@@ -9,6 +9,8 @@
   "Can't find device ip address. Type it manually": "",
   "Cancel": "",
   "Charge": "",
+  "Charge Notification": "",
+  "Charged {{energy}} kWh in ": "",
   "Connected to car": "",
   "Consumed": "",
   "Continue charging": "",
@@ -115,9 +117,12 @@
   "Voltage": "",
   "Waiting": "",
   "Yes": "",
+  "and cost {{cost}} {{currencySymbol}}": "",
   "kW": "",
   "kW/h": "",
   "noPWN": "",
   "noSleep": "",
-  "{{hours}}h, {{minutes}}m, {{seconds}}s": ""
+  "{{hours}}h, {{minutes}}m, {{seconds}}s": "",
+  "{{timeHours}} hour and ": "",
+  "{{timeMinutes}} minute ": ""
 }
