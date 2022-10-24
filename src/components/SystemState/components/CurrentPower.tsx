@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
 
 export const CurrentPower = () => {
   const { t } = useTranslation();
-  const { curMeas1, powerMeas, voltMeas1 } = useSelector(getStatusSelector);
+  const { curMeas1, curMeas2, curMeas3, powerMeas, voltMeas1, voltMeas2, voltMeas3 } = useSelector(getStatusSelector);
   const { restricted_mode } = useSelector(getEvseConfig);
   const { highVoltageHandler } = useEVSESettingsHook();
   const maxCurrent = useMaxCurrent();
@@ -61,6 +61,8 @@ export const CurrentPower = () => {
       <View style={[styles.box, voltColor]}>
         <Text style={[styles.text, voltColor]}>{t("Voltage")}</Text>
         <Text style={[styles.text, voltColor]}>{Math.floor(voltMeas1)} V</Text>
+        {!!voltMeas2 && <Text style={[styles.text, voltColor]}>{Math.floor(voltMeas2)} V</Text>}
+        {!!voltMeas3 && <Text style={[styles.text, voltColor]}>{Math.floor(voltMeas3)} V</Text>}
       </View>
       <View style={[styles.box]}>
         <TouchableOpacity onLongPress={() => highVoltageHandler(restricted_mode ? 0 : 1)}>
@@ -69,6 +71,16 @@ export const CurrentPower = () => {
             {curMeas1.toFixed(1)}
             {!!aiCurrent && ` / ${aiCurrent}`} / {maxCurrent} A
           </Text>
+          {!!curMeas2 && (
+            <Text style={styles.text}>
+              {curMeas2.toFixed(1)} {!!aiCurrent && ` / ${aiCurrent}`} / {maxCurrent} A
+            </Text>
+          )}
+          {!!curMeas3 && (
+            <Text style={styles.text}>
+              {curMeas3.toFixed(1)} {!!aiCurrent && ` / ${aiCurrent}`} / {maxCurrent} A
+            </Text>
+          )}
         </TouchableOpacity>
       </View>
       <View style={[styles.box]}>

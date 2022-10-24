@@ -1,6 +1,6 @@
 {
   "name": "evse",
-  "version": "0.44.0",
+  "version": "0.44.1",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",

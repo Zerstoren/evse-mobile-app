@@ -5,7 +5,11 @@ export type StateReducerData = {
   state: STATUS;
   pilot: PILOT;
   voltMeas1: number;
+  voltMeas2: number;
+  voltMeas3: number;
   curMeas1: number;
+  curMeas2: number;
+  curMeas3: number;
   powerMeas: number;
   boxTemp: number; // Box temp
   socketTemp: number; // Socket temp
@@ -24,7 +28,11 @@ const initialState: StateReducerData = {
   state: STATUS.StateUnknown,
   pilot: PILOT.Unknown,
   voltMeas1: 0,
+  voltMeas2: 0,
+  voltMeas3: 0,
   curMeas1: 0,
+  curMeas2: 0,
+  curMeas3: 0,
   powerMeas: 0,
   boxTemp: 0,
   socketTemp: 0,
