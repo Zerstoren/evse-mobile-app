@@ -37,13 +37,13 @@ export const ElectricityMeter = () => {
   const onResetMeter = (type: 1 | 2) => {
     Alert.alert(
       t(`Reset electricity meter ${type}`),
-      t("Are you sure?"),
+      t("Are you sure?") as string,
       [
         {
-          text: t("Cancel"),
+          text: t("Cancel") as string,
         },
         {
-          text: t("Reset"),
+          text: t("Reset") as string,
           onPress: () => {
             postData([`rstEM${type}`]);
           },

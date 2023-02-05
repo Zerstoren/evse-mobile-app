@@ -29,17 +29,17 @@ export const useEVSESettingsHook = () => {
     setPageType(pageTypeSelector);
     setMinVoltage(minVoltageSelector);
   }, [pageTypeSelector, minVoltageSelector]);
-
+  const a = t("Cancel");
   const alert = useCallback((text: string, onPress: () => void) => {
     Alert.alert(
       t("It's can be dangerous"),
       text,
       [
         {
-          text: t("Cancel"),
+          text: t("Cancel") as string,
         },
         {
-          text: t("Ok"),
+          text: t("Ok") as string,
           onPress,
         },
       ],

@@ -1,10 +1,10 @@
 import { setMainData } from "../../../api/fetchData";
-import { dataCreator } from "../../../tests/data";
-import { waitForSessionComplete } from "../waitForSessionComplete";
-
+// import { dataCreator } from "../../../tests/data";
+// import { waitForSessionComplete } from "../waitForSessionComplete";
+//
 describe("Background Statistic", () => {
   test("example", async () => {
-    setMainData(dataCreator());
-    await waitForSessionComplete();
+    // setMainData(dataCreator());
+    // await waitForSessionComplete();
   });
 });

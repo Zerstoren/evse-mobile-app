@@ -1,3 +1,7 @@
+/* eslint-disable import/first */
+// @ts-expect-error: ok
+global.__DEV__ = true;
+
 import "./mocks/asyncStore";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import "../i18n";

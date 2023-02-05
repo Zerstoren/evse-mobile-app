@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { StyleSheet, Text, View } from "react-native";
 import { Trans, useTranslation } from "react-i18next";
 import SelectDropdown from "react-native-select-dropdown";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 import { AppButton } from "../../system/AppButton";
 import {
@@ -199,6 +199,7 @@ export const EVSESettings = () => {
           onSelect={(selectedItem, index) => timerTypeHandler((index + 1) as 1 | 2 | 3 | 4)}
           buttonTextAfterSelection={(selectedItem) => selectedItem}
           rowTextForSelection={(item) => item}
+          onChangeSearchInputText={() => {}}
           renderDropdownIcon={() => (
             <Ionicons name="chevron-down" size={12} color="black" style={styles.dropdownIcon} />
           )}
@@ -218,6 +219,7 @@ export const EVSESettings = () => {
           onSelect={() => displayTypeHandler(pageType ? 0 : 1)}
           buttonTextAfterSelection={(selectedItem) => selectedItem}
           rowTextForSelection={(item) => item}
+          onChangeSearchInputText={() => {}}
           renderDropdownIcon={() => (
             <Ionicons name="chevron-down" size={12} color="black" style={styles.dropdownIcon} />
           )}
@@ -238,6 +240,7 @@ export const EVSESettings = () => {
             onSelect={(selectedItem) => setMinimalVoltageHandler(selectedItem)}
             buttonTextAfterSelection={(selectedItem) => selectedItem}
             rowTextForSelection={(item) => item}
+            onChangeSearchInputText={() => {}}
             renderDropdownIcon={() => (
               <Ionicons name="chevron-down" size={12} color="black" style={styles.dropdownIcon} />
             )}
