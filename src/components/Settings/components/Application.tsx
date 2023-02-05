@@ -5,7 +5,7 @@ import { Trans, useTranslation } from "react-i18next";
 import Slider from "@react-native-community/slider";
 
 import SelectDropdown from "react-native-select-dropdown";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "react-native-vector-icons/Ionicons";
 import { colors } from "../../system/styles/colors";
 import { setLanguageAction, setMaxCapacityAction, setMaxCurrentAction } from "../../../store/application/action";
 import { getLanguageSelector, getMaxCapacitySelector, getMaxCurrentSelector } from "../../../store/application/select";
@@ -70,6 +70,7 @@ export const Application = () => {
             onSelect={(selectedItem, index) => dispatch(setLanguageAction(index === 0 ? "en" : "ua"))}
             buttonTextAfterSelection={(selectedItem) => selectedItem}
             rowTextForSelection={(item) => item}
+            onChangeSearchInputText={() => {}}
             renderDropdownIcon={() => (
               <Ionicons name="chevron-down" size={12} color="black" style={styles.dropdownIcon} />
             )}

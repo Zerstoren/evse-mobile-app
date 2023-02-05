@@ -1,10 +1,10 @@
-import React from "react";
 import { Provider } from "react-redux";
 import { NavigationContainer } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
-
 import "./src/i18n";
+
 import { store } from "./src/store/configuredStore";
+
 import { Navigation, Tab, TabNames } from "./src/components/system/Navigation";
 import { SystemState } from "./src/components/SystemState/SystemState";
 import { Adjustment } from "./src/components/Adjustment/Adjustment";
@@ -13,8 +13,6 @@ import { Statistic } from "./src/components/Statistic/Statistic";
 import { Settings } from "./src/components/Settings/Settings";
 import { Schedule } from "./src/components/Schedule/Schedule";
 import { useFetchData } from "./src/api/fetchData";
-
-import "./src/background";
 
 export default function App() {
   const { t } = useTranslation();

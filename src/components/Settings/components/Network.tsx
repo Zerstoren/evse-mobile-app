@@ -84,7 +84,7 @@ export const Network = () => {
         <View style={styles.boxAddressTextInput}>
           <TextInput
             keyboardType="url"
-            placeholder={t("EVSE box IP address")}
+            placeholder={t("EVSE box IP address") as string}
             value={address}
             onChangeText={(text) => {
               setAddress(text);

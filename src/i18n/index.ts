@@ -30,6 +30,7 @@ i18n
     nsSeparator: "~",
     pluralSeparator: "^",
     interpolation: { prefix: "{{", suffix: "}}", escapeValue: false },
+    returnNull: false,
   });
 
 getItem(StorageKeys.LANGUAGE).then((language) => {

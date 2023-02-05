@@ -29,13 +29,13 @@ export const StopCharging = () => {
   const stopCharging = () => {
     Alert.alert(
       t("Stop charging"),
-      t("Are you sure you want to stop charging?"),
+      t("Are you sure you want to stop charging?") as string,
       [
         {
-          text: t("Cancel"),
+          text: t("Cancel") as string,
         },
         {
-          text: t("Yes"),
+          text: t("Yes") as string,
           onPress: () => dispatch(setLimitEvseAction(!evsaDisabled)),
         },
       ],

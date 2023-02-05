@@ -32,7 +32,15 @@
   },
   "rules": {
     "prettier/prettier": ["error", {
-        "endOfLine": "auto"
+      "printWidth": 120,
+      "trailingComma": "all",
+      "useTabs": false,
+      "tabWidth": 2,
+      "semi": true,
+      "singleQuote": false,
+      "bracketSpacing": true,
+      "jsxBracketSameLine": false,
+      "arrowParens": "always"
       }
     ],
     "quotes": [2, "double"],
@@ -45,6 +53,7 @@
     "no-restricted-syntax": [0],
     "no-param-reassign": [0],
     "import/extensions": [0],
+    "import/no-extraneous-dependencies": [0],
     "no-restricted-exports": [0],
     "@typescript-eslint/restrict-plus-operands": [0],
     "@typescript-eslint/naming-convention": [0],
@@ -90,12 +99,6 @@
       "rules": {
         "default-param-last": [0],
         "@typescript-eslint/default-param-last": [0]
-      }
-    },
-    {
-      "files": ["src/tests/**/*"],
-      "rules": {
-        "max-classes-per-file": [0]
       }
     }
   ]

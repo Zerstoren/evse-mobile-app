@@ -124,6 +124,7 @@ export const Adjustment = () => {
                 onSelect={(selectedItem, index) => dispatch(setAiStatus(index + 1))}
                 buttonTextAfterSelection={(selectedItem) => selectedItem}
                 rowTextForSelection={(item) => item}
+                onChangeSearchInputText={() => {}}
               />
             </View>
           </View>

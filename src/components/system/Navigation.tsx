@@ -1,6 +1,6 @@
 import React, { FC, PropsWithChildren } from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import Ionicons from "@expo/vector-icons/Ionicons";
+import Ionicons from "react-native-vector-icons/Ionicons";
 import { useLoadDataFromStore } from "./hooks/useLoadDataFromStore";
 
 export const Tab = createMaterialTopTabNavigator();
